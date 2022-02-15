@@ -1,0 +1,39 @@
+﻿@page "/ViewClaims"
+
+@inherits LossTypeBase;
+
+
+@if(Losstypes == null | Losstypes.Count() ==0)
+{
+<div style="text-align:center;">
+    <div class="spinner"></div>
+</div>
+}
+else
+{
+    <div class="container">
+    <div class="row">
+        <div class="col-12">
+
+            <table class="table table-success">
+                <tr >
+                    <th style="text-align:center">Loss Type Code</th>
+                    <th style="text-align:center">Description</th>
+                    <th style="text-align:center">Last Updated By</th>
+                </tr>
+                @foreach (var row in Losstypes)
+                {
+                    <tr style="text-align:center">
+
+                        <td align="center"> @row.LossTypeCode</td>
+                        <td align="center"> @row.LossTypeDescription</td>
+                        <td align="center"> @row.DisplayName</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div> }
+
+

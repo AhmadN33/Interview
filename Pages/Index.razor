@@ -1,0 +1,60 @@
+﻿@page "/"
+
+@inherits Indexbase;
+
+    <link  href="/css/CustomDesign.css" rel="stylesheet" />
+
+<EditForm Model="@loginInformation" style="border:1px;" OnValidSubmit="@ValidateUser">
+    <DataAnnotationsValidator />
+    @if (IsPageLoading == true)
+    {
+        <div style="text-align:center;">
+            <div class="spinner"></div>
+        </div>
+    }
+    else
+    {
+
+        <div class="card mx-auto mt-lg-2" style="width: 25rem;width:600px;">
+            <div hidden="@IsShow" class="alert alert-danger">
+                <strong>Attention !</strong> @Message
+            </div>
+            <div class="card-header">
+                Login
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <td>
+
+                            <InputText for="txtUsername" placeholder="Username" autocomplete="on" id="txtUsername" @bind-Value="loginInformation.UserName" class="form-control"></InputText>
+                            <ValidationMessage For="@(() => loginInformation.UserName)" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <InputText for="txtPassword" type="password" placeholder="Password" id="cbDeclarationPage" @bind-Value="loginInformation.Password" class="form-control"></InputText>
+                            <ValidationMessage For="@(() => loginInformation.Password)" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            @if (IsSearching)
+                            {
+                                <div style="text-align:center;">
+                                    <div class="spinner"></div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-success float-right search disabled" disabled><span class='fa-left fas fa-sync-alt spinning'></span>Logging...</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary btn-success  float-right search">Login</button>
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    }
+</EditForm>

@@ -1,0 +1,104 @@
+﻿@inherits LayoutComponentBase
+
+@using WebApplication1.Areas.Identity;
+@inject AuthenticationStateProvider authenticationStateProvider;
+@code{
+    
+    public void Logout()
+    {
+        ((CustomAuthenticationStateProvider)authenticationStateProvider).Signout();
+        StateHasChanged();
+    }
+
+}
+
+<html>
+<head>
+    <title>
+        Insurance Claims
+    </title>
+</head>
+<body dir="ltr" lang="en">
+    <!-- Top Menu Start -->
+    <div id="templatemo_header_wrapper">
+        <div id="templatemo_header">
+            <div id="site_logo"></div>
+            <div id="templatemo_menu">
+                <div id="templatemo_menu_left"></div>
+                <ul>
+                    <li><a href="/" class="current">Home</a></li>
+                    <li><a href="/ViewClaims" class="current">View Claims</a></li>
+                    <AuthorizeView>
+                        <Authorized>
+                            <li> <a href="javascript:void(0)">Hello, @context.User.Identity.Name</a></li>
+                            <li><a href="/" @onclick="(()=> Logout())">Logout</a></li>
+                        </Authorized>
+                        <NotAuthorized>
+                            <li><a href="/">Login</a></li>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End of Top Menu-->
+    <!-- Banner Start -->
+    <div id="templatemo_banner_wrapper">
+        <div id="templatemo_banner">
+
+            <div id="templatemo_banner_image">
+                <div id="templatemo_banner_image_wrapper">
+                    <img src="/images/Data-Protection.jpg" alt="banner image" />
+                </div>
+            </div>
+
+            <div id="templatemo_banner_content">
+                <div class="header_01">Insurance Claims System </div>
+                <p style="margin-left:35px"> Company Name </p>
+            </div>
+
+            <div class="cleaner"></div>
+        </div>
+    </div>
+    <!-- End of Banner -->
+    <div id="templatemo_content_wrapper">
+        <div id="templatemo_content">
+
+        
+            <div class="header_02">Welcome to your system!</div>
+            @Body
+            <div class="cleaner"></div>
+
+            <div class="cleaner"></div>
+        </div>
+    </div>
+    <div style="clear: both;">
+    </div>
+    <!-- Footer -->
+    <div id="templatemo_footer_wrapper">
+
+        <div id="templatemo_footer">
+
+            <div class="section_w180">
+                <div class="header_05">Home</div>
+                <div class="section_w180_content">
+                    <ul class="footer_menu_list">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section_w180">
+                <div class="header_05">View Claim</div>
+                <div class="section_w180_content">
+                    <ul class="footer_menu_list">
+                    </ul>
+                </div>
+            </div>
+            <div class="margin_bottom_20"></div>
+            Copyright Reserved for company 2022 ©
+            <div class="cleaner"></div>
+        </div> <!-- end of footer -->
+    </div>
+    <!-- End of Footer -->
+</body>
+</html>
